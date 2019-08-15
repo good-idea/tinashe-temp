@@ -7,17 +7,29 @@
     "projectId": "eiufuzvv",
     "dataset": "production"
   },
+  "env": {
+    "development": {
+      "api": {
+        "dataset": "production"
+      }
+    }
+  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool"
+    "@sanity/desk-tool",
+    "@sanity/vision"
   ],
   "parts": [
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./schemas/structure.js"
     }
   ]
 }
