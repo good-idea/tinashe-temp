@@ -1,0 +1,33 @@
+{
+  "name": "tinashe",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sanity setup for Tinashe - Songs For You",
+  "main": "package.json",
+  "author": "Joseph Thomas <joseph@good-idea.studio> & Special---Offer",
+  "license": "NONE",
+  "scripts": {
+    "start": "sanity start",
+    "test": "sanity check"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/base": "^0.142.0",
+    "@sanity/components": "^0.142.0",
+    "@sanity/core": "^0.142.0",
+    "@sanity/default-layout": "^0.142.0",
+    "@sanity/default-login": "^0.142.0",
+    "@sanity/desk-tool": "^0.142.0",
+    "prop-types": "^15.6",
+    "react": "^16.2",
+    "react-dom": "^16.2"
+  },
+  "devDependencies": {
+    "@sanity/cli": "^0.142.0",
+    "@types/prop-types": "^15.7.1",
+    "@types/react": "^16.9.1",
+    "@types/react-dom": "^16.8.5"
+  }
+}

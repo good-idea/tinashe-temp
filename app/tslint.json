@@ -1,0 +1,67 @@
+{
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier",
+    "tslint-react",
+    "tslint-config-airbnb"
+  ],
+  "rules": {
+    "align": false,
+    "interface-name": [true, "never-prefix"],
+    "import-name": false,
+    "jsdoc-format": false,
+    "variable-name": false,
+    "semicolon": [true, "never"],
+    "ter-arrow-parens": [true, "always"],
+    "prefer-array-literal": false,
+    "no-submodule-imports": [true, "rxjs", "react-icons"],
+    "jsx-no-multiline-js": false,
+    "ordered-imports": [false],
+    "typedef": [
+      true,
+      [
+        "call-signature",
+        "arrow-call-signature",
+        "parameter",
+        "arrow-parameter",
+        "property-declaration",
+        "variable-declaration",
+        // "member-variable-declaration",
+        "object-destructuring",
+        "array-destructuring"
+      ]
+    ],
+    "trailing-comma": false, // conflicts with prettier?
+    "max-line-length": false, // let prettier do it
+    "ter-indent": false, // let prettier do it
+    "no-this-assignment": false,
+    // TODO: allow devDependencies only in **/*.spec.ts files:
+    // waiting on https://github.com/palantir/tslint/pull/3708
+    "no-implicit-dependencies": [true, "dev"],
+    "curly": false,
+    "object-literal-sort-keys": false,
+    "no-var-keyword": true,
+    "no-parameter-reassignment": true,
+    "no-unused-variable": { "severity": "warning" },
+
+    // Immutability rules
+    // "readonly-keyword": true,
+    // "readonly-array": true,
+    // "no-let": true,
+    // "no-object-mutation": true,
+    // "no-delete": true,
+    // "no-method-signature": true,
+
+    // Functional style rules
+    // "no-this": true,
+    // "no-class": true,
+    // "no-mixed-interface": true,
+    // "no-expression-statement": [
+    //   true,
+    //   { "ignore-prefix": ["console.", "process.exit", "dispatch"] }
+    // ]
+    /* end tslint-immutable rules */
+    "prettier": [true, ".prettierrc"]
+  }
+}
