@@ -1,22 +1,13 @@
 import * as React from 'react'
 import * as createSanityClient from '@sanity/client'
-import { SiteSettings, Track } from '../../types'
+import { SiteSettings, Track, SanityClient } from '../../types'
 import { parseData } from './parseData'
-import { siteDataQuery } from './query'
-
-const client = createSanityClient({
-  projectId: 'eiufuzvv',
-  dataset: 'production',
-  useCDN: true,
-})
-
+import { siteDataQuery, ExpectedQueryResult } from './query'
 /**
  * Context Setup
  */
 
-interface SiteDataContextValue {
-  loading: boolean
-  data: SiteData
+interface SiteDataContextValue extends DataState {
   /* */
 }
 
@@ -48,7 +39,7 @@ export interface SiteData {
 interface DataState {
   loading: boolean
   data?: SiteData
-  errorMessage?: string
+  error?: string
 }
 
 interface Action {
@@ -73,7 +64,7 @@ const siteDataReducer = (state: DataState, action: Action): DataState => {
       return {
         ...state,
         loading: false,
-        errorMessage: action.errorMessage,
+        error: action.errorMessage,
       }
     default:
       return state
@@ -86,22 +77,29 @@ const siteDataReducer = (state: DataState, action: Action): DataState => {
 
 interface SiteDataProps {
   children: React.ReactNode
+  client: SanityClient
 }
-export const SiteDataProvider = ({ children }: SiteDataProps) => {
+
+export const SiteDataProvider = ({ children, client }: SiteDataProps) => {
   const [state, dispatch] = React.useReducer(siteDataReducer, initialState)
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const data = await client.fetch(siteDataQuery)
-      console.log(data)
-      console.log(parseData(data))
+      const result = await client
+        .fetch<ExpectedQueryResult>(siteDataQuery)
+        .then((result) => {
+          const data = parseData(result)
+          dispatch({ type: FETCH_SUCCESS, data })
+        })
+        .catch((err) => {
+          dispatch({ type: FETCH_ERROR, errorMessage: 'sorry!' })
+        })
     }
     fetchData()
   }, [])
 
   const value = {
     ...state,
-    /* */
   }
 
   return (

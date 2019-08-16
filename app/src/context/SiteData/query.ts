@@ -1,3 +1,6 @@
+import { RawTrack } from './parseData'
+import { SiteSettings } from '../../types'
+
 const imageFragment = `
   "url": asset->url,
   "_key": asset->id,
@@ -30,3 +33,8 @@ export const siteDataQuery = `{
   }[0]
 }
 `
+
+export interface ExpectedQueryResult {
+  tracks: RawTrack[]
+  settings: SiteSettings
+}

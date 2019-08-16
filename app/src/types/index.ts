@@ -1,9 +1,15 @@
+export type SanityClient = {
+  fetch: <ExpectedResult>(query: string) => Promise<ExpectedResult>
+}
+
+interface ImageMetaData {}
+
 export interface SanityImage {
   _type: 'image'
-  asset: {
-    _ref: string
-    _type: 'reference'
-  }
+  _key: string
+  url: string
+  metadata: ImageMetaData
+  extension: string
 }
 
 export interface SEO {
