@@ -5,7 +5,11 @@ import { useSiteData } from '../context/SiteData'
 import { TrackLink } from '../components/TrackLink'
 import { Header2, Ol } from '../components/Text'
 
-const Nav = styled.nav``
+const Nav = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+`
 
 const Title = styled(Header2)`
   margin-bottom: 5;

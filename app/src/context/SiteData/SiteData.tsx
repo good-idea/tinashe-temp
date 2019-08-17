@@ -9,6 +9,7 @@ import { siteDataQuery, ExpectedQueryResult } from './query'
 
 interface SiteDataContextValue extends DataState {
   /* */
+  getTrack: (trackSlug: string) => Track | void
 }
 
 const SiteDataContext = React.createContext<SiteDataContextValue | undefined>(
@@ -98,8 +99,14 @@ export const SiteDataProvider = ({ children, client }: SiteDataProps) => {
     fetchData()
   }, [])
 
+  const getTrack = (trackSlug: string) =>
+    state.data && state.data.tracks
+      ? state.data.tracks.find((t) => t.slug === trackSlug)
+      : undefined
+
   const value = {
     ...state,
+    getTrack,
   }
 
   return (

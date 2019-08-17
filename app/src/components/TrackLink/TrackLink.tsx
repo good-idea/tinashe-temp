@@ -22,7 +22,6 @@ export const TrackLink = ({ track }: TrackLinkProps) => {
         const isReleased = true
         const { title, trackNumber } = track
 
-        console.log(props)
         return (
           <TextWrapper isReleased={isReleased} active={match}>
             <TrackTitle active={match}>

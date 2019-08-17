@@ -32,6 +32,7 @@ interface TrackTitleProps {
 }
 export const TrackTitle = styled.div`
   ${({ active }: TrackTitleProps) => css`
+    display: inline-block;
     ${active
       ? `
       
