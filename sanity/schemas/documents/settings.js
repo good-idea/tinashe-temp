@@ -4,6 +4,12 @@ export const Settings = {
   name: 'homepage',
   fields: [
     {
+      name: 'albumTitle',
+      label: 'Album Title',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'seoTitle',
       label: 'Site Title',
       type: 'string',

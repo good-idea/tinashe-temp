@@ -38,6 +38,13 @@ export const Track = {
       label: 'Listen Link',
       type: 'url',
     },
+    {
+      name: 'background',
+      label: 'Background',
+      type: 'array',
+      of: [{ type: 'responsiveImage' }],
+      validation: (Rule) => Rule.max(1),
+    },
   ],
   orderings: [
     {

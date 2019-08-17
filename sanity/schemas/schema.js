@@ -15,6 +15,6 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     ...Object.values(documents),
-    // ...Object.values(objects),
+    ...Object.values(objects),
   ]),
 })
