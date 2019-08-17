@@ -93,6 +93,7 @@ export const SiteDataProvider = ({ children, client }: SiteDataProps) => {
           dispatch({ type: FETCH_SUCCESS, data })
         })
         .catch((err) => {
+          console.log(err)
           dispatch({ type: FETCH_ERROR, errorMessage: 'sorry!' })
         })
     }

@@ -24,12 +24,10 @@ export const TrackLink = ({ track }: TrackLinkProps) => {
 
         return (
           <TextWrapper isReleased={isReleased} active={match}>
-            <TrackTitle active={match}>
-              <TrackNumber>{track.trackNumber}</TrackNumber>
-              <Link to={path} aria-current={props.match ? 'page' : false}>
-                {track.title}
-              </Link>
-            </TrackTitle>
+            <TrackNumber>{track.trackNumber}</TrackNumber>
+            <Link to={path} aria-current={props.match ? 'page' : false}>
+              {track.title}
+            </Link>
             {props.match ? (
               <TrackButtons>
                 <LinkButton>Share</LinkButton>

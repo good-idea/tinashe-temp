@@ -1,14 +1,22 @@
 import * as React from 'react'
-import { Link } from '@reach/router'
+import { Link, Location } from '@reach/router'
 import styled, { css } from '@xstyled/styled-components'
 import { useSiteData } from '../context/SiteData'
 import { TrackLink } from '../components/TrackLink'
 import { Header2, Ol } from '../components/Text'
 
+interface NavProps {
+  isHomepage: boolean
+}
+
 const Nav = styled.nav`
-  position: fixed;
-  top: 0;
-  left: 0;
+  ${({ isHomepage }: NavProps) => css`
+    position: fixed;
+    top: 0;
+    left: 0;
+    mix-blend-mode: ${isHomepage ? 'initial' : 'difference'};
+    color: ${isHomepage ? 'black' : '#a9a5a6'};
+  `}
 `
 
 const Title = styled(Header2)`
@@ -32,17 +40,21 @@ export const Navigation = (props: NavigationProps) => {
   const siteData = useSiteData()
 
   const { loading, data } = siteData
-  if (loading) return null
+  if (loading || !data) return null
   return (
-    <Nav>
-      <TrackList>
-        <Title>
-          <Link to="/">{data.settings.albumTitle}</Link>
-        </Title>
-        {data.tracks.map((track) => (
-          <TrackLink key={track.slug} track={track} />
-        ))}
-      </TrackList>
-    </Nav>
+    <Location>
+      {({ location }) => (
+        <Nav isHomepage={location.pathname === '/'}>
+          <TrackList>
+            <Title>
+              <Link to="/">{data.settings.albumTitle}</Link>
+            </Title>
+            {data.tracks.map((track) => (
+              <TrackLink key={track.slug} track={track} />
+            ))}
+          </TrackList>
+        </Nav>
+      )}
+    </Location>
   )
 }

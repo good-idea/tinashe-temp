@@ -27,21 +27,6 @@ export const TextWrapper = styled(Li)`
   `}
 `
 
-interface TrackTitleProps {
-  active: boolean
-}
-export const TrackTitle = styled.div`
-  ${({ active }: TrackTitleProps) => css`
-    display: inline-block;
-    ${active
-      ? `
-      
-      mix-blend-mode: difference;
-      `
-      : ''}
-  `}
-`
-
 export const LinkButton = styled.button`
   font: inherit;
   border: none;

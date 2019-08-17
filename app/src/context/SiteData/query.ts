@@ -23,6 +23,9 @@ export const siteDataQuery = `{
   ] | order(trackNumber) {
     "slug": slug.current,
     ${seoFragment}
+    "background": background[0]{
+      ${imageFragment}
+    },
     ...
   },
   "settings": *[
