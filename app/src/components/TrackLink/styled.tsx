@@ -1,20 +1,17 @@
 import styled, { css } from '@xstyled/styled-components'
-import { Li, Header5 } from '../Text'
+import { Li, Header4, Header5 } from '../Text'
 
 interface TextWrapperProps {
-  isReleased: boolean
+  isHidden: boolean
   active: boolean
 }
 
 export const TextWrapper = styled(Li)`
-  ${({ isReleased, active }: TextWrapperProps) => css`
+  ${({ active, isHidden }: TextWrapperProps) => css`
     position: relative;
     font-size: 2;
-    ${isReleased
-      ? ''
-      : `
-    filter: blur(2px);
-    `}
+    opacity: ${isHidden ? '0' : '1'};
+    pointer-events: ${isHidden ? 'none' : 'initial'};
 
     a {
       color: inherit;
@@ -34,6 +31,18 @@ export const LinkButton = styled.button`
   margin: 0;
   padding: 0;
   color: inherit;
+`
+
+interface TrackTitleProps {
+  released: boolean
+}
+
+export const TrackTitle = styled.div`
+  ${({ released }: TrackTitleProps) => css`
+    display: inline-block;
+    filter: ${released ? 'none' : 'blur(7px)'};
+    opacity: ${released ? '0.7' : '1'};
+  `}
 `
 
 export const TrackNumber = styled(Header5)`
@@ -56,4 +65,9 @@ export const TrackButtons = styled.span`
   & > * {
     margin-left: 6;
   }
+`
+
+export const Countdown = styled(Header4)`
+  display: inline-block;
+  padding-left: 4;
 `

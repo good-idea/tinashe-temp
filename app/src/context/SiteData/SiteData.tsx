@@ -84,6 +84,7 @@ interface SiteDataProps {
 export const SiteDataProvider = ({ children, client }: SiteDataProps) => {
   const [state, dispatch] = React.useReducer(siteDataReducer, initialState)
 
+  /* Fetch site data */
   React.useEffect(() => {
     const fetchData = async () => {
       const result = await client

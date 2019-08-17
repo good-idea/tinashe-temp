@@ -1,9 +1,12 @@
 import * as React from 'react'
 import { Link, Location } from '@reach/router'
 import styled, { css } from '@xstyled/styled-components'
+import { Track } from '../types'
 import { useSiteData } from '../context/SiteData'
 import { TrackLink } from '../components/TrackLink'
 import { Header2, Ol } from '../components/Text'
+
+const { useState, useEffect } = React
 
 interface NavProps {
   isHomepage: boolean
@@ -36,10 +39,31 @@ interface NavigationProps {
   /* */
 }
 
+const unreleased = (track: Track) => track.releaseDate > new Date()
+
+const sortByReleaseDate = (a: Track, b: Track): number => {
+  if (a.releaseDate > b.releaseDate) return 1
+  if (a.releaseDate < b.releaseDate) return -1
+  return -1
+}
+
+function head<T>(arr: T[]): T | void {
+  return arr.length ? arr[0] : undefined
+}
+
+// const head = <T>(arr: T[]): T | void =>
+
 export const Navigation = (props: NavigationProps) => {
   const siteData = useSiteData()
-
   const { loading, data } = siteData
+  const now = new Date()
+
+  const nextRelease =
+    data && data.tracks
+      ? head(data.tracks.filter(unreleased).sort(sortByReleaseDate))
+      : undefined
+  console.log(nextRelease)
+
   if (loading || !data) return null
   return (
     <Location>
@@ -50,7 +74,12 @@ export const Navigation = (props: NavigationProps) => {
               <Link to="/">{data.settings.albumTitle}</Link>
             </Title>
             {data.tracks.map((track) => (
-              <TrackLink key={track.slug} track={track} />
+              <TrackLink
+                key={track.slug}
+                track={track}
+                isNextRelease={track === nextRelease}
+                released={track.releaseDate < now}
+              />
             ))}
           </TrackList>
         </Nav>
