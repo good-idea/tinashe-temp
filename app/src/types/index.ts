@@ -18,7 +18,9 @@ export interface SEO {
   seoImage: SanityImage
 }
 
-export interface SiteSettings extends SEO {}
+export interface SiteSettings extends SEO {
+  albumTitle: string
+}
 
 export interface Track extends Partial<SEO> {
   trackNumber: number
