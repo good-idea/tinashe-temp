@@ -62,7 +62,6 @@ export const Navigation = (props: NavigationProps) => {
     data && data.tracks
       ? head(data.tracks.filter(unreleased).sort(sortByReleaseDate))
       : undefined
-  console.log(nextRelease)
 
   if (loading || !data) return null
   return (

@@ -49,7 +49,6 @@ export const TrackLink = ({
   return (
     <Match path={path}>
       {(props) => {
-        console.log(props)
         const { match } = props
         const { title, trackNumber } = track
         const hidden = props.location.pathname !== '/' && match === null

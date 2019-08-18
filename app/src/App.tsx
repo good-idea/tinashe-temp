@@ -11,7 +11,7 @@ import { theme, GlobalStyles } from './theme'
 const client = createSanityClient({
   projectId: 'eiufuzvv',
   dataset: 'production',
-  useCDN: true,
+  useCdn: true,
 })
 
 export const App = () => {

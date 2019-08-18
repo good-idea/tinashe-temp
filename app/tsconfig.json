@@ -8,12 +8,13 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
+    "target": "es5",
     "sourceMap": true,
     "jsx": "react",
     // "rootDir": ".",
     "lib": ["es6", "es7", "dom"],
     "outDir": "./dist",
+    "types": ["node", "jest"],
 
     /*
 		TODO: Tighten these up once development is rolling
