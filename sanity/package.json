@@ -1,5 +1,5 @@
 {
-  "name": "tinashe",
+  "name": "tinashe-cms",
   "private": true,
   "version": "1.0.0",
   "description": "Sanity setup for Tinashe - Songs For You",
@@ -7,6 +7,7 @@
   "author": "Joseph Thomas <joseph@good-idea.studio> & Special---Offer",
   "license": "NONE",
   "scripts": {
+    "deploy": "sanity deploy",
     "start": "sanity start",
     "test": "sanity check"
   },

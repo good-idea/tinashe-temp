@@ -8,7 +8,7 @@
   "license": "NONE",
   "private": true,
   "scripts": {
-    "build": "yarn workspace tinashe-app build"
+    "build": "yarn workspace tinashe-cms deploy && yarn workspace tinashe-app build"
   },
   "workspaces": [
     "sanity",
