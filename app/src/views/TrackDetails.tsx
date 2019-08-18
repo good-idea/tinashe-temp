@@ -15,14 +15,12 @@ const Wrapper = styled.div`
 
 interface TrackDetailsProps {
   path: string
-  trackName: string
+  trackName?: string
 }
 
 export const TrackDetails = (props: TrackDetailsProps) => {
   const { loading, data, error, getTrack } = useSiteData()
   const track = getTrack(props.trackName)
-  console.log(track)
-  console.log(props)
   if (loading || error || !data) return null
   if (!track) return <NotFound />
   const { tracks } = data
