@@ -7,6 +7,9 @@
   "author": "Joseph Thomas & Special---Offer",
   "license": "NONE",
   "private": true,
+  "scripts": {
+    "build": "yarn worskpace tinashe-app build"
+  },
   "workspaces": [
     "sanity",
     "app"
