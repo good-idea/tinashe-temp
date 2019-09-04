@@ -22,6 +22,7 @@ export const happyResult: ExpectedQueryResult = {
     },
   ],
   settings: {
+    albumTitle: 'Songs For you',
     seoTitle: 'Tinashe - Songs For You',
     seoDescription: 'Sample description',
     seoImage: imageStub,

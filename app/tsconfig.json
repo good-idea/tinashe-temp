@@ -15,13 +15,13 @@
     "lib": ["es6", "es7", "dom"],
     "outDir": "./dist",
     "types": ["node", "jest"],
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
 
     /*
 		TODO: Tighten these up once development is rolling
-		"noImplicitReturns": true,
 		"noImplicitThis": true,
 		"noImplicitAny": true,
-		"strictNullChecks": true
 		*/
 
     // "typeRoots": ["./node_modules/@types"],

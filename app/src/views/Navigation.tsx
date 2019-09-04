@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link, Location } from '@reach/router'
+import { withRouter, Link, RouteComponentProps } from 'react-router-dom'
 import styled, { css } from '@xstyled/styled-components'
 import { Track } from '../types'
 import { useSiteData } from '../context/SiteData'
@@ -14,9 +14,7 @@ interface NavProps {
 
 const Nav = styled.nav`
   ${({ isHomepage }: NavProps) => css`
-    position: fixed;
-    top: 0;
-    left: 0;
+    flex-grow: 1;
     mix-blend-mode: ${isHomepage ? 'initial' : 'difference'};
     color: ${isHomepage ? 'black' : '#a9a5a6'};
   `}
@@ -35,7 +33,7 @@ const TrackList = styled(Ol)`
   justify-content: space-between;
 `
 
-interface NavigationProps {
+interface NavigationProps extends RouteComponentProps {
   /* */
 }
 
@@ -51,9 +49,8 @@ function head<T>(arr: T[]): T | void {
   return arr.length ? arr[0] : undefined
 }
 
-// const head = <T>(arr: T[]): T | void =>
-
-export const Navigation = (props: NavigationProps) => {
+export const NavigationBase = (props: NavigationProps) => {
+  const { location } = props
   const siteData = useSiteData()
   const { loading, data } = siteData
   const now = new Date()
@@ -65,24 +62,23 @@ export const Navigation = (props: NavigationProps) => {
 
   if (loading || !data) return null
   return (
-    <Location>
-      {({ location }) => (
-        <Nav isHomepage={location.pathname === '/'}>
-          <TrackList>
-            <Title>
-              <Link to="/">{data.settings.albumTitle}</Link>
-            </Title>
-            {data.tracks.map((track) => (
-              <TrackLink
-                key={track.slug}
-                track={track}
-                isNextRelease={track === nextRelease}
-                released={track.releaseDate < now}
-              />
-            ))}
-          </TrackList>
-        </Nav>
-      )}
-    </Location>
+    <Nav isHomepage={location.pathname === '/'}>
+      <TrackList>
+        <Title>
+          <Link to="/">{data.settings.albumTitle}</Link>
+        </Title>
+        {data.tracks.map((track) => (
+          <TrackLink
+            location={location}
+            key={track.slug}
+            track={track}
+            isNextRelease={track === nextRelease}
+            released={track.releaseDate < now}
+          />
+        ))}
+      </TrackList>
+    </Nav>
   )
 }
+
+export const Navigation = withRouter(NavigationBase)

@@ -42,6 +42,7 @@ export const TrackTitle = styled.div`
     display: inline-block;
     filter: ${released ? 'none' : 'blur(7px)'};
     opacity: ${released ? '0.7' : '1'};
+    transition: 0.3s;
   `}
 `
 
@@ -51,11 +52,11 @@ export const TrackNumber = styled(Header5)`
     width: ${theme.space[8]};
     height: 100%;
     right: 100%;
+    display: block;
+    text-align: center;
+    line-height: ${theme.fontSizes[2]}px;
     margin: 0;
     top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   `}
 `
 

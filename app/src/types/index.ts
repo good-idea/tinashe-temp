@@ -27,5 +27,5 @@ export interface Track extends Partial<SEO> {
   title: string
   slug: string
   releaseDate: Date
-  background: SanityImage
+  background?: SanityImage
 }

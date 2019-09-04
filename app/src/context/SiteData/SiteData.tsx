@@ -3,6 +3,7 @@ import * as createSanityClient from '@sanity/client'
 import { SiteSettings, Track, SanityClient } from '../../types'
 import { parseData } from './parseData'
 import { siteDataQuery, ExpectedQueryResult } from './query'
+
 /**
  * Context Setup
  */
@@ -13,7 +14,7 @@ interface SiteDataContextValue extends DataState {
 }
 
 const SiteDataContext = React.createContext<SiteDataContextValue | undefined>(
-  undefined
+  undefined,
 )
 
 export const SiteDataConsumer = SiteDataContext.Consumer
@@ -91,7 +92,10 @@ export const SiteDataProvider = ({ children, client }: SiteDataProps) => {
         .fetch<ExpectedQueryResult>(siteDataQuery)
         .then((result) => {
           const data = parseData(result)
-          dispatch({ type: FETCH_SUCCESS, data })
+          dispatch({
+            type: FETCH_SUCCESS,
+            data,
+          })
         })
         .catch((err) => {
           dispatch({ type: FETCH_ERROR, errorMessage: 'sorry!' })

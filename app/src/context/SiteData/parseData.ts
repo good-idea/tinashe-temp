@@ -29,7 +29,7 @@ const validateTrack = (trackData: Partial<RawTrack>): boolean => {
       title.length &&
       slug &&
       slug.length &&
-      typeof trackNumber === 'number'
+      typeof trackNumber === 'number',
   )
 }
 
@@ -46,8 +46,9 @@ export const parseData = (data: QueryResult): SiteData => {
     tracks: tracks
       .filter(validateTrack)
       .sort((a, b) => {
-        if (a.trackNumber < b.trackNumber) return 1
-        if (a.trackNumber > b.trackNumber) return -1
+        if (!a.trackNumber || !b.trackNumber) return 0
+        if (a.trackNumber < b.trackNumber) return -1
+        if (a.trackNumber > b.trackNumber) return 1
         return 0
       })
       .filter(Boolean)
